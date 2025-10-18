@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def lua_script():
-    url = "https://cdn.discordapp.com/attachments/1428012794678087950/1428998120167178291/KTHCY.lua_2_1_1_2_3_2.txt?ex=68f53275&is=68f3e0f5&hm=affcec770fcd29495aa65b448d8486b616aa549a6265e4542dcb0016a11a39bd&"
+    url = "https://cdn.discordapp.com/attachments/1428012794678087950/1428998137539854336/6652138009334659.lua?ex=68f53279&is=68f3e0f9&hm=2dfdfbf80d8a3adf67bc303aadc6ff30ba53ef7880851d2f226d84f774e122e8&"
     response = requests.get(url)
     if response.status_code == 200:
         lua_code = response.text
