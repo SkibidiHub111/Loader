@@ -1,15 +1,16 @@
 from flask import Flask, Response
+import requests
 
 app = Flask(__name__)
 
 @app.route('/')
 def lua_script():
-    lua_code = '''
-repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-getgenv().Config = getgenv().Config or {}
-local v_1 = loadstring(game:HttpGet("https://cdn.discordapp.com/attachments/1428012794678087950/1428998137539854336/6652138009334659.lua?ex=68f489b9&is=68f33839&hm=196d2b650cd4fdbb2f19a895abf0fee4e025f098d8ddde767908677a3284eec2&"))()
-v_1()
-'''
+    url = "https://cdn.discordapp.com/attachments/1428012794678087950/1428998120167178291/KTHCY.lua_2_1_1_2_3_2.txt?ex=68f53275&is=68f3e0f5&hm=affcec770fcd29495aa65b448d8486b616aa549a6265e4542dcb0016a11a39bd&"
+    response = requests.get(url)
+    if response.status_code == 200:
+        lua_code = response.text
+    else:
+        lua_code = "Error: Không thể tải file Lua từ URL"
     return Response(lua_code, mimetype='text/plain')
 
 if __name__ == '__main__':
